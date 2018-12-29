@@ -1,0 +1,18 @@
+Welcome to "pd", the alternative to "ls".
+
+  Description:   This program will read the current directory or the 
+                 directories listed on the command line and display the
+                 contents showing the "files" first then the "directories".
+                 This program can be used instead of "ls".
+
+   Installing:   Compiling this program is easy, enter the following:
+ 
+                 Check the "Makefile" and verify that the pathnames.
+
+                 A useful alias for csh is "l", it clear the screen first:
+                     # alias l "clear ; pd \!* | more"
+
+                 For sh user, create a script as follows:
+                     #! /bin/sh
+                     pd $* | pg -e
+

@@ -1,0 +1,536 @@
+.\" @(#)pd.1 v5.1.0 2005/03/01; from Scott Fehrman, Sun Microsystems, Inc
+.TH PD 1 "1 March 2005"
+.SH NAME
+.B pd 
+\- print directory, seperates the files from the sub-directories, a 
+substitute for ls.
+.SH SYNOPSIS
+.B pd
+[-abchilmpvABCDLRST] 
+[-d <date_option> ] 
+[-n <no_option> ]
+[-s <sort_option> ]
+[-t <type_option> ]
+[ -u <unit_option> ]
+[ 
+.I dirname(s) | filename(s) ]
+\&.\|.\|.
+.SH DESCRIPTION
+For each
+.I dirname, 
+.B pd
+lists the contents of the directory; for each 
+.I filename, 
+.B pd
+repeats its name and any other information requested. By default, the output
+is sorted alphabetically. When no
+.I dirname
+or 
+.I filename
+is given, the current directory is listed.  When several
+.I dirnames
+or
+.I filenames
+are given, the files are shown first then the directories are shown in the 
+order as they appear on the command-line. Each directory will be displayed in
+two parts: Files will be shown first then any sub-directories will be shown.
+.LP
+.B pd
+uses two different output formats: 
+.I normal & extended. 
+The 
+.I normal
+output displays the entries
+using multiple columns. The 
+.I extended
+output displays each entry on a line of its own. The
+.I extended
+output format is used by the following options: 
+-a, -d <sub-opt>, -i, -m, -p, -s <sub-opt>, -B, -L, -S, -T.
+.LP
+.SH OPTIONS
+The following options are supported:
+.LP
+.TP
+.B \-a
+Show Access Control List (ACL) information for the file or directory.  The
+ACL mask for the file/dir is listed first in square brackets [].  Each ACL,
+either user or group, will follow the mask.  The ACL will start with a 'u'
+for user and a 'g' for group. The user or group name/id will be second. The
+ACL setting will be last.  There are two ACL values, the assigned ACL and
+the 'effective' ACL (which will be in parentheses). Actual access to a
+file/dir is determined by the 'effective' ACL which is determined by the
+file/dir ACL mask and the user/group ACL.  This option uses the 
+extended output format.
+.TP
+.B \-b
+Suppress extraneous information and removes all blank lines, only directory and
+file data will be displayed.
+.TP
+.B \-c
+Count the number of files and sub-dirs, only display the quantities.
+.TP
+.B \-d <sub-option>[,<sub-option,...]
+This option displays the entries Date/Time information. It uses the extended
+output format. sub-options include:
+.RS
+.IP all
+Show all date/time information for each entry.  Date/Time information
+includes: modified (dtm), accessed (dta) and status changed (dts).
+.IP dtm
+Show date/time when last modified.
+.IP dta
+Show date/time when last accessed.
+.IP dts
+Show date/time when status changed (chmod/chgrp/chown).
+.IP dmy
+Format date: Day/Month/Year.
+.IP mdy
+Format date: Month/Day/Year.
+.IP ymd
+Format date: Year/Month/Day.
+.RE
+.TP
+.B \-h
+Display the help summary for the
+.B pd
+program.
+.TP
+.B \-i
+Show the UNIX inode file number. This option uses the extended output
+format.
+.TP
+.B \-l
+Show the symbolic link's information, not what the link is pointing to.  
+This option only applies when used with another option that uses the extended 
+output format.
+.TP
+.B \-m
+Show the files/dirs permission mode [octal values] in addition to the 'rwx' 
+protection format.  The '-p' option is automatically applied with this
+option.
+.TP 
+.B \-n <sub-option>[,<sub-option>,...]
+This option, and its sub-options, allow the user to specify which features
+they don't want.  The 'no' or 'not' sub-options include:
+.RS
+.IP dot
+Don't show any files or sub-dirs that start with a '.' (period).  By 
+default pd shows all hidden files except '.' (current directory) and
+'..' (parent directory).
+.IP hdr
+Don't show header information when the extended output format is used.
+.IP name
+Don't show the user or group name. Show the actual user id and group id.
+This option is only applicable to the '-m' or '-p' option.
+.IP pwd
+Don't show the full pathname of the directory being listed.
+.IP qty
+Don't show the quantites for the selected directory (e.g. total entries, 
+files, sub-directories).
+.RE
+.TP
+.B \-p
+Display the protection and ownership of the files and sub-directories. 
+This option displays the entries using the extended output format. 
+See the ls man page for details on permission attributes.
+.TP
+.B \-s <sub-option>[,<sub-option>,...]
+This option, and its sub-options, allow the user to change the sorting of
+entries.  When a sorting option is selected, other than 'none', 'name' 
+and 'rev', the sorted attribute will automatically be displayed using the 
+extended output format.  Note: All of the sorting options 
+are exclusive except for the 'rev' option.  The sort sub-options include:
+.RS
+.IP none
+Don't do any sorting, usually listed by inode number.
+.IP name
+Sort by name (default).
+.IP dtm
+Sort by date/time last modified.
+.IP dta
+Sort by date/time last accessed.
+.IP dts
+Sort by date/time status changed (chown/chgrp/chmod).
+.IP user
+Sort by user id number (not by the user name).
+.IP group
+Sort by group id number (not by the group name).
+.IP inode
+Sort by the inode number.
+.IP link
+Sort by hard link count.
+.IP size
+Sort by size.
+.IP type
+Sort by type.
+.IP rev
+Reverse the sorting order, applies to all other sorting options. Ascending
+sorting (default) becomes descending.
+.RE
+.TP
+.B \-t <sub-option>[,<sub-option>,...]
+Select what type of entries the user wants displayed.  By default, both
+files and sub-directories are displayed.  Type options include:
+.RS
+.IP file
+Show only the files (non sub-directories).
+.IP dir
+Show only the sub-directories.
+.RE
+.TP
+.B \-u <sub-option>
+Specify the unit of measure for the file size. The default unit is
+(b) byte. Each unit is a multiple of 1024 bytes.  Unit options include:
+.RS
+.IP b
+Bytes (default)
+.IP k
+Kilobytes
+.IP m
+Megabytes
+.IP g
+Gigabytes
+.RE
+.TP
+.B \-v
+Display the version information.
+.TP
+.B \-A
+List all entries; include the entries 
+.RB ` . '
+and
+.RB ` .. '
+(by default, these two entries are
+.I not
+shown).
+.TP
+.B \-B
+Show the number of Blocks that are allocated in the given filesystem.  Block
+size may vary, UFS usually has 8K file blocks.
+.TP
+.B \-C
+Force the output to be displayed in a single column.
+.TP
+.B \-D
+Show sub-directories like a file. List the sub-directory information, not
+the information it contains.
+.TP
+.B \-L
+Show number of hard links.
+.TP
+.B \-R
+Recursively display information for all sub-directories.
+.TP
+.B \-S
+Display the size (bytes) of the files and sub-directories.  Note:  The  size 
+shown for directories is
+.I not
+the size of the data within a directory; it's  
+the size of the directory entry.  Note:  If an entry is either a Character 
+or Block Special file, then the major and minor unit numbers will be shown.
+.TP
+.B \-T
+Display the file's type: Regular, Directory, Socket, FIFO, Character, Block,
+Door, Symbolic Link.
+
+.SH EXAMPLES
+.LP
+.I "pd"
+without any options:
+.RS
+.ft CB
+.nf
+ % pd
+
+ /home/user   38 Entries.
+
+ 19 Files.
+
+ .Xauthority         .Xdefaults          .acrorc
+ .cshrc              .desksetdefaults    .dtprofile
+ .emacs              .login              .mailboxlist
+ .mailcap            .mime.types         .mlbxlsttmp
+ .rhosts             .signature          .user.rdb
+ .xemacs-options     home.html           index.html
+ log.tn
+
+ 19 Directories.
+
+ .cetables           .dt                 .fm
+ .hp48               .netscape           .pgp
+ .roam               .sdtspell_dict      .solregis
+ .tt                 .wastebasket        PDASync
+ TT_DB               junk                ns_imap
+ nsmail              pc                  tmp
+ work
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the option that only counts the number of entries:
+.RS
+.ft CB
+.nf
+ % pd -c
+
+ /home/user   38 Entries.
+
+ 19 Files.
+
+ 19 Directories.
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the option that doesn't show the hidden files:
+.RS
+.ft CB
+.nf
+ % pd -n dot
+
+ /home/user   11 Entries.
+
+ 3 Files.
+
+ home.html   index.html  log.tn
+
+ 8 Directories.
+
+ PDASync     TT_DB       junk        ns_imap     nsmail
+ pc          tmp         work
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the option that only displays the files and then only the directories:
+.RS
+.ft CB
+.nf
+ % pd -t file
+
+ /home/user   38 Entries.
+
+ 19 Files.
+
+ .Xauthority         .Xdefaults          .acrorc
+ .cshrc              .desksetdefaults    .dtprofile
+ .emacs              .login              .mailboxlist
+ .mailcap            .mime.types         .mlbxlsttmp
+ .rhosts             .signature          .user.rdb
+ .xemacs-options     home.html           index.html
+ log.tn
+
+ % pd -t dir
+
+ /home/user   38 Entries.
+
+ 19 Directories.
+
+ .cetables           .dt                 .fm
+ .hp48               .netscape           .pgp
+ .roam               .sdtspell_dict      .solregis
+ .tt                 .wastebasket        PDASync
+ TT_DB               junk                ns_imap
+ nsmail              pc                  tmp
+ work
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the option that displays the entrie's permission and the 
+equivalent mode [octal value].  To obtain just the permissions use 
+the '-p' option. 
+.RS
+.ft CB
+.nf
+ % pd -n dot -m
+
+ /home/user   11 Entries.
+
+ 3 Files.
+
+ Name         User  Group Other [Mode]     User.Group     
+ -----------------------------------------------------------
+ home.html    rw-   r--   r--   [ 644]     user.tse  -> index.html
+ index.html   rw-   r--   r--   [ 644]     user.tse       
+ log.tn       rw-   rw-   r-- + [ 664]     user.tse       
+
+ 8 Directories.
+
+ Name         User  Group Other [Mode]     User.Group     
+ -----------------------------------------------------------
+ PDASync      rwx   r-x   r-x + [ 755]     user.tse       
+ TT_DB        rwx   r-x   r-x   [ 755]     root.root      
+ junk         rwx   rwx   r-x   [ 775]     user.tse  -> ./tmp
+ ns_imap      rwx   r-x   r-x   [ 755]     user.tse       
+ nsmail       rwx   ---   ---   [ 700]     user.tse       
+ pc           rwx   r-x   r-x + [ 755]     user.tse       
+ tmp          rwx   rwx   r-x   [ 775]     user.tse       
+ work         rwx   r-x   r-x   [ 755]     user.tse       
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the option that displays Access Control List (ACL) information: 
+.RS
+.ft CB
+.nf
+ % pd -n dot -a
+
+ /home/user   11 Entries.
+
+ 3 Files.
+
+ Name         Access Control Lists [mask] (effective) 
+ -----------------------------------------------------------
+ home.html    -> index.html
+ index.html   
+ log.tn       [rw-] g:totalnet:rw-(rw-) 
+
+ 8 Directories.
+
+ Name         Access Control Lists [mask] (effective) 
+ -----------------------------------------------------------
+ PDASync      [r-x] u:z990978:rwx(r-x) 
+ TT_DB        
+ junk         -> ./tmp
+ ns_imap      
+ nsmail       
+ pc           [rwx] u:ppp:rwx(rwx) 
+ tmp          
+ work         
+
+ %
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with different sorting options.  The first example sorts by size. The
+second example sorts by Date/Time Modified in reverse order and it
+selects an alternate format for the date information.
+.RS
+.ft CB
+.nf
+ % pd -t file -s size
+
+ /home/user   38 Entries.
+
+ 19 Files.
+
+ Name                Size (bytes)  
+ -----------------------------------------------------------
+ log.tn                         0  
+ .rhosts                       22  
+ index.html                   176  
+ home.html                    176  -> index.html
+ .mime.types                  445  
+ .emacs                       495  
+ .Xdefaults                   698  
+ .signature                   725  
+ .Xauthority                  933  
+ .login                      1042  
+ .mailcap                    1060  
+ .cshrc                      1081  
+ .dtprofile                  1239  
+ .acrorc                     1635  
+ .desksetdefaults            3557  
+ .user.rdb                   4096  
+ .mlbxlsttmp                 5828  
+ .mailboxlist                6747  
+ .xemacs-options            18513  
+
+ % pd -t file -s dtm,rev -d ymd
+
+ /home/user   38 Entries.
+
+ 19 Files.
+
+ Name               Modified             
+ -----------------------------------------------------------
+ .Xauthority        2000/10/07-19:05:28  
+ .mailboxlist       2000/10/03-09:47:20  
+ .cshrc             2000/09/21-17:46:04  
+ .login             2000/09/15-08:58:37  
+ .acrorc            2000/08/10-15:54:38  
+ .emacs             2000/08/07-20:37:06  
+ .signature         2000/07/21-16:59:55  
+ .mailcap           2000/07/18-22:13:44  
+ .mime.types        2000/07/18-22:13:44  
+ .rhosts            2000/07/18-18:58:15  
+ .mlbxlsttmp        2000/04/07-16:41:06  
+ log.tn             2000/02/05-16:44:26  
+ .dtprofile         1999/12/30-00:46:42  
+ .user.rdb          1999/11/21-13:23:38  
+ .desksetdefaults   1999/09/07-22:36:13  
+ .xemacs-options    1998/06/03-10:36:49  
+ home.html          1996/06/08-16:06:54  -> index.html
+ index.html         1996/06/08-16:06:54  
+ .Xdefaults         1996/02/22-19:14:03  
+
+ % 
+.ft
+.fi
+.RE
+.LP
+.I "pd"
+with the the file type information:
+.RS
+.ft CB
+.nf
+ % pd -T /dev
+
+ /dev   236 Entries.
+
+ 224 Files.
+
+ Name                       Type              
+ -----------------------------------------------------------
+ .devfs_eventmgr            Door Descriptor   
+ .devfs_log_event           Door Descriptor   
+ .devfsadm_deamon.lock      Regular File      
+ .devfsadm_dev.lock         Regular File      
+ .devfseventd_daemon.lock   Regular File      
+ arp                        Character Device  -> ../devices/...
+ audio                      Character Device  -> sound/0
+ audioctl                   Character Device  -> sound/0ctl
+ conslog                    Character Device  -> ../devices/...
+ console                    Character Device  -> ../devices/...
+ diskette                   Block Device      -> ../devices/...
+ diskette0                  Block Device      -> ../devices/...
+
+ <example truncated>
+
+ % 
+.ft
+.fi
+.RE
+.SH NOTES
+.LP
+If a directory contains a Symbolic Link that refers to an entry which 
+does not exist, 
+.B "pd"
+will list the link as a file when the normal output format is used. When the 
+extended format output is used, the link will be listed as a file along with 
+the error message: 
+.B (Missing Symbolic Link Target).
+To see the status about the link, use the '-l' option.
+.SH BUGS
+.LP
+None are known at the release version of 5.1.0

@@ -1,0 +1,242 @@
+History:   ( rev / by / date / description )
+  
+rev number = (major_release . minor_release . fix_release)
+fix_release = 0 then "beta release"
+
+5.1.1  slf  03/12/2005  mod: use autoconf, automake for distribution
+                        del: calls to free() since we exit when done
+                        add: configure script for deployment
+
+5.1.0  slf  03/01/2005  add: support for LARGEFILES
+                        add: -u <arg> option for size units
+                             b = Bytes (default), k = Kilobytes
+                             m = Megabytes, g = Gigabytes
+                        del:  -k option
+
+5.0.4  slf  04/11/2003  fix: bug, check NULL from getcwd()
+
+5.0.3  slf  10/26/2000  fix: buff overflow with perror()
+                        fix: div/0: name len > screen width
+
+5.0.2  slf  10/18/2000  mod: remove some comments from source
+
+5.0.1  slf  10/12/2000  release:
+
+5.0.0  slf  09/19/2000  mod: rewrite of arguments and internals
+                        add: use getopt() and getsubopt()
+                        add: sort by file type
+                        mod: re-wrote sort functions
+                        add: recursive processing of sub-directories
+                        fix: sym link info was wrong
+                        del: dropped env variable support
+
+4.1.1  slf  08/01/2000  release:
+
+4.1.0  slf  04/14/2000  add: more support to protection data
+                             - mandatory locking flag "L"
+                             - user sticky bits "t" & "T"
+                        add: file [mode] option "-m" | "-mode"
+                             - (i.e. rwx rwx r-x  == [ 775])
+                             - (i.e. rwS r-x r-x  == [4755])
+
+4.0.2  slf  03/07/2000  fix: reverse date modified sorting bug
+
+4.0.1  slf  03/06/2000  release:
+
+4.0.0  slf  12/17/1999  mod: rewrote core processing tasks
+                        add: dir as file option "-df"
+                        add: option file type "-t"
+                        add: option file blocks alloc "-blk"
+                        add: option "-nn | -no_name"
+                        add: option sort inode "-si"
+                        add: option sort user "-su"
+                        add: option sort group "-sg"
+                        add: option sort access "-sa"
+                        add: option sort change "-sc"
+                        add: option sort link "-sl"
+                        add: MAX_PATH_LEN definition
+                        mod: move global vars to local, use arg pass
+                        mod: consolidate some functions
+                        mod: restructure braces {} in code
+                        mod: MAX_NAME_LEN definition
+                        mod: get the terminal width (setupterm)
+                        del: "-w" wide option, now auto set
+                        del: SVR3 opt, must handle sym lnk
+
+3.5.1  slf  03/01/1999  release:
+
+3.5.0  slf  01/07/1999  mod: enhance Solaris acl support;
+                             show acl mask and #effective acls
+
+3.4.2  slf  04/13/1998  mod: shorten "(symbolic) link err" message
+
+3.4.1  slf  04/10/1998  release:
+
+3.4.0  slf  03/11/1998  mod: re-organized "pd" tar file packaging
+                        mod: Year 2000 support: 4-digit years
+                        add: option for european date format "-de"
+                        add: option for japan date format "-dj"
+                        add: Solaris acl support "-acl"
+                        mod: re-wrote file perm output technique
+                        add: install via SVR4 pkgadd
+
+3.3.2  slf  08/26/1994  mod: show pathname if directory is empty
+
+3.3.1  slf  01/19/1993  release: all platforms defined by "Systems:"
+
+3.3.0  slf  12/18/1992  add: option: "-nd | -no_dot" hides dot files
+                        mod: if ENV opt show ":" not "." after entry quantities
+
+3.2.3  slf  10/14/1992  changed version banner, documented all functions
+
+3.2.2  slf  09/04/1992  fix: alt output w/ all name len < 4
+                        mod: re-wrote comments/documentation
+
+3.2.1  slf  07/14/1992  release: all platforms defined by "Systems:"
+
+3.2.0  slf  06/17/1992  add: option: -lc | -link_cnt, show file link count
+
+3.1.1  slf  05/21/1992  release: sun3, sun4, exl300, mips(exl7000)
+
+3.1.0  slf  05/18/1992  add: show major / minor if special file
+                        add: show suid & sgid if set: x=S
+
+3.0.2  slf  04/29/1992  mod: sort_name() was sort_default()
+                        del: don't read array backwards for reverse
+                        mod: have qsort() do reverse sort
+                        add: functions: sort_rev_*
+
+3.0.1  slf  04/21/1992  release: sun3, sun4, exl300, mips (exl7000)
+
+3.0.0  slf  03/20/1992  mod: rewrite internal data mgnt
+                             * use struct instead of name,size,date
+                             * use pointer arrays for performance
+                             * dyn allocate memory instead of static arrays.
+                             * removed check_array function "n/a"
+                             * use qsort() instead of own functions
+                             * removed #ifdef DEBUG, using "dbx"
+                             * program checked with "lint"
+
+2.10.2  slf  03/13/1992 mod: when using cmd line wildcards "*" and
+                             -f or -d switch only show files or dirs
+
+2.10.1  slf  03/12/1992 release: sun3, sun4, exl300, mips (exl7000)
+
+2.10.0  slf  02/07/1992 add: option "-nh" no header for extended output
+                        add: option "-b | -brief" = "-nh -np -nq"
+                        mod: use proper exit value: 0 if ok, else exit > 0
+
+2.9.3  slf  01/28/1992  mod: changed "expanded" output header
+                        mod: User was Owner & Other was World
+
+2.9.2  slf  01/16/1992  fix: major perf. problem w/alt sorts
+                             created arrays for date & size
+                             now reads date & size along with name
+                        mod: changed sort func. for new technique
+
+2.9.1  slf  01/14/1992  release: sun3, sun4, EXL300(SVR3), MIPS (EXL7000)
+
+2.9.0  slf  01/02/1992  mod: new reverse sort technique 
+                             print array backwards if "-r" option
+                        add: option "-sm" or "-sort_dtm" sort by modified
+                        add: option "-ss" or "-sort_size" sort by size
+                        mod: sort_default() was sort_directory()
+
+2.8.2  slf  12/31/1991  add: re-support EXL300 (SVR3) compile opt
+                        add: expanded internal notation.
+
+2.8.1  slf  12/27/1991  release: sun3, sun4, EXL7000
+
+2.8.0  slf  12/19/1991  add: option to display "inode #" "-i" or "-inode"
+
+2.7.4  slf  12/18/1991  mod: DEBUG's to use #ifdef compile with "-DDEBUG"
+
+2.7.3  slf  10/23/1991  fix: ">" to ">=" in check_array halted qty = MAX_FILE+1
+
+2.7.2  slf  09/30/1991  mod: "Other" to "World" protect expanded output
+
+2.7.1  slf  09/24/1991  released: Sun3, Sun4, Prime EXL7000
+
+2.7.0  slf  09/17/1991  mod: handle invalid links disp link as a file, 
+                        "?" before name and the word "Broken Link" if expanded
+
+2.6.2  slf  09/17/1991  fix: skip invalid links, don't abort ...
+                             display error, then continue process
+
+2.6.1  slf  08/27/1991  released: Sun3, Sun4, Prime EXL7000
+
+2.6.0  slf  08/23/1991  add: ( -l | -link ) show what symbolic links point to
+                        add: global var ENV_NAME options support
+                        del: support for Prime EXL300 (SVR3)
+                        mod: program name from "pld" to "pd"
+
+2.5.1  slf  08/07/1991  released: Sun3, Sun4, Prime Exl300, Prime Exl7000
+                        mod: copyright notice
+
+2.5.0  slf  08/06/1991  mod: command line processor
+                        mod: seperate files from directories
+
+2.4.1  slf  08/02/1991  released : Sun3, Sun4, Prime Exl300, Prime Exl7000
+
+2.4.0  slf  08/01/1991  add: version stamp & new features: 
+                        mod: support file only listings (no error)
+                        add: option "-w | -wide" 132 column format
+
+2.3.4  slf  07/16/1991  add: program notes, document code,
+
+2.3.3  slf  07/05/1991  add: option to show count only "-c | -count"
+
+2.3.2  slf  07/03/1991  add: option to show "." & ".." files
+
+2.3.1  slf  07/03/1991  released SunOS 4.x, EXL300
+
+2.3.0  slf  07/02/1991  add: size, owner.group, protection data "rwx" (beta)
+
+2.2.1  slf  07/01/1991  released: sun3, sun4, Prime EXL300, Prime EXL7000
+
+2.2.0  slf  07/01/1991  add: date/time accessed, modified, status changed 
+
+2.1.6  slf  06/28/1991  add: extra options (f,d)
+                        add: new output (single column "sc")
+
+2.1.5  slf  06/27/1991  fix: reverse sort for files
+
+2.1.4  slf  06/18/1991  add: "-r | -reverse" reverse sort
+
+2.1.3  slf  06/17/1991  fix: was not sorting data properly
+                        add: "-ns | -no_sort" for debug
+                        mod: changed setting of "iSwap" flag
+
+2.1.2  slf  06/11/1991  mod: use memcpy() instead of strcpy()
+                        fix: proper display with "-nq -np" options
+                        fix: sort for directories (didn't sort)
+
+2.1.1  slf  06/10/1991  released: Sun3, Sun4, Prime EXL300, Prime EXL7000
+                        mod: array, MAX_FILE was 500 now 1500
+                        mod: check for array out of bounds
+
+2.1.0  slf  06/10/1991  new features ( beta test ) 
+                        mod: use "option" words instead of characters
+                        mod: use getcwd() instead of system("pwd")
+                        mod: move header into display_directory()
+
+2.0.1  slf  06/07/1991  released: Sun3, Sun4, Prime EXL300, Prime EXL7000
+
+2.0.0  slf  06/06/1991  add: totally rewritten ( beta test )
+                        add: use opendir() & readdir()
+                        add: use stat() to determine entry type
+
+1.5.0  slf  04/09/1991  mod: cleaned code, changed char array size
+
+1.4.0  slf  01/28/1991  mod: "printf" if only 1 item found
+                        add: if empty dir, "No entries selected."
+
+1.3.0  slf  01/23/1991  add: source code documentation
+                        del: "pd rev" banner
+
+1.2.0  slf  01/23/1991  add: check for "." & ".."
+                        mod: <strings.h> to <string.h>
+
+1.1.0  slf  01/23/1991  mod: check for "." and ".." failed on SVR3
+
+1.0.0  slf  01/22/1991  Initial coding ( alpha test ) tested on: Sun3, Sun4
