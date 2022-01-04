@@ -3,6 +3,11 @@ History:   ( rev / by / date / description )
 rev number = (major_release . minor_release . fix_release)
 fix_release = 0 then "beta release"
 
+5.2.0  slf  01/03/2022  mod: remove Solaris ACL support
+                        mod: update for C99
+                        mod: code clean-up
+                        del: files for "configure" and "make"
+
 5.1.1  slf  03/12/2005  mod: use autoconf, automake for distribution
                         del: calls to free() since we exit when done
                         add: configure script for deployment

@@ -1,12 +1,12 @@
-.\" @(#)pd.1 v5.1.0 2005/03/01; from Scott Fehrman, Sun Microsystems, Inc
-.TH PD 1 "1 March 2005"
+.\" @(#)pd.1 v5.2.0 2005/03/01; from Scott Fehrman
+.TH PD 1 "1 January 2022"
 .SH NAME
 .B pd 
 \- print directory, seperates the files from the sub-directories, a 
 substitute for ls.
 .SH SYNOPSIS
 .B pd
-[-abchilmpvABCDLRST] 
+[-bchilmpvABCDLRST] 
 [-d <date_option> ] 
 [-n <no_option> ]
 [-s <sort_option> ]
@@ -46,22 +46,11 @@ using multiple columns. The
 output displays each entry on a line of its own. The
 .I extended
 output format is used by the following options: 
--a, -d <sub-opt>, -i, -m, -p, -s <sub-opt>, -B, -L, -S, -T.
+-d <sub-opt>, -i, -m, -p, -s <sub-opt>, -B, -L, -S, -T.
 .LP
 .SH OPTIONS
 The following options are supported:
 .LP
-.TP
-.B \-a
-Show Access Control List (ACL) information for the file or directory.  The
-ACL mask for the file/dir is listed first in square brackets [].  Each ACL,
-either user or group, will follow the mask.  The ACL will start with a 'u'
-for user and a 'g' for group. The user or group name/id will be second. The
-ACL setting will be last.  There are two ACL values, the assigned ACL and
-the 'effective' ACL (which will be in parentheses). Actual access to a
-file/dir is determined by the 'effective' ACL which is determined by the
-file/dir ACL mask and the user/group ACL.  This option uses the 
-extended output format.
 .TP
 .B \-b
 Suppress extraneous information and removes all blank lines, only directory and
@@ -97,8 +86,7 @@ Display the help summary for the
 program.
 .TP
 .B \-i
-Show the UNIX inode file number. This option uses the extended output
-format.
+Show the inode file number. This option uses the extended output format.
 .TP
 .B \-l
 Show the symbolic link's information, not what the link is pointing to.  
@@ -387,41 +375,6 @@ the '-p' option.
 .RE
 .LP
 .I "pd"
-with the option that displays Access Control List (ACL) information: 
-.RS
-.ft CB
-.nf
- % pd -n dot -a
-
- /home/user   11 Entries.
-
- 3 Files.
-
- Name         Access Control Lists [mask] (effective) 
- -----------------------------------------------------------
- home.html    -> index.html
- index.html   
- log.tn       [rw-] g:totalnet:rw-(rw-) 
-
- 8 Directories.
-
- Name         Access Control Lists [mask] (effective) 
- -----------------------------------------------------------
- PDASync      [r-x] u:z990978:rwx(r-x) 
- TT_DB        
- junk         -> ./tmp
- ns_imap      
- nsmail       
- pc           [rwx] u:ppp:rwx(rwx) 
- tmp          
- work         
-
- %
-.ft
-.fi
-.RE
-.LP
-.I "pd"
 with different sorting options.  The first example sorts by size. The
 second example sorts by Date/Time Modified in reverse order and it
 selects an alternate format for the date information.
@@ -533,4 +486,4 @@ the error message:
 To see the status about the link, use the '-l' option.
 .SH BUGS
 .LP
-None are known at the release version of 5.1.0
+None are known at the release version of 5.2.0
